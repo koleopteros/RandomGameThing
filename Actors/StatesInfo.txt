@@ -1,0 +1,65 @@
+Terms:
+	Minor: between 1% to 3% effect.
+	Moderate: between 3% to 5% effect.
+	Major: 5% to 10% effect.
+	Immense: 15% effect.
+	Crazy amounts: 25% effect
+
+Normal:
+	actor modifiers operate normally
+
+Unconcious:
+	actor can no longer move nor act during their turn.
+	actor state changes to 'dead' upon having 'unconcious' for 3 turns, unless an additional state states otherwise.
+
+Dead:
+	actor can no longer be resuscitated.
+	actor disappears, potentially leaving behind their belongings.
+
+Berzerk:
+	actor gains a major bonus to physical attacks.
+	actor receives a moderate bonus to damage reduction.
+	actor movement costs 0 stamina.
+	Backwards and sideways movement costs reduced to 1.
+	actor expends additional stamina per action.
+	superseded by 'tired', 'weakened', and 'drained' states.
+
+Enlightened:
+	actor initially gains crazy amounts of mana resource.
+	actor receives minor bonus to mana regeneration.
+	actor is immune to mana-burn.
+	actor casting range increased by 1.
+	superseded by 'tired', 'weakened', and 'drained' states.
+
+Desperation:
+	actor gains moderate bonus to all attacks and defense.
+	Backwards and sideways movement costs reduced to 1.
+
+Frantic:
+	actor receives crazy amounts of bonus to all attacks.
+	incoming attacks receive crazy amounts of bonus damage.
+	actor expends immense amounts of additional resource for actions.
+	as long as resource is greater than 0, may ignore 'insufficient resource' and bring resource below 0.
+	superseded by 'tired', 'weakened', and 'drained' states.
+
+Mana-burn:
+	Activates when current mana resource > max mana resource.
+		actor receives damage based on the overflow of mana resource.
+		the greater the overflow, the greater the damage.
+	Deactivates when current mana resource <= max mana resource.
+
+Weakened:
+	Activates when current mana/stamina resource <= 10% of max mana/stamina resource.
+		actor's attacks and actions receive a minor penalty in all aspects.
+	Deactivates when current mana/stamina resource > 10% of max mana/stamina resource.
+
+Drained:
+	Activates when mana <= 0
+		actor's attacks and actions receive a major penalty in all aspects.
+	Deactivates when mana > 0
+
+Tired:
+	Activates when stamina <= 0
+		actor cannot move nor perform any action on their next turn.
+	Deactivates when stamina > 0
+

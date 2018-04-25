@@ -1,0 +1,117 @@
+Terms when describing amounts:
+	Primary stats: should have a large impact in calculations (multiplier of 0.8 to 1.1)
+	Minor stats: should have a small impact in calculations (multiplier of 0.1 to 0.3)
+	Hard: Value cannot be lowered or increased beyond stated value by any means.
+	Soft: Initial value cannot be greater or less than stated value, but can be increased or decreased by effects during combat.
+Other terms outside of Attributes:
+	Minor: between 1% to 3% effect.
+	Moderate: between 3% to 5% effect.
+	Major: 5% to 10% effect.
+	Immense: 15% effect.
+	Crazy amounts: 25% effect
+
+
+All actors should have the following attributes: 
+	Resources: Health, Mana, Spell Shield, Stamina, Action Points, Skill points, Movement Points
+	Statistical: Strength, Intelligence, Dexterity, Vitality, Luck, Speed
+	Other: Bravery, Faith, Defense, Protection, Race, Gender, Job, Level, Job Level, Experience
+
+Resources:
+	Health: 
+		health cannot exceed 100% of max health.
+		health < 25%, the unit enters a specific state based off their bravery and faith.
+			if bravery > 75 or faith > 75, unit enters 'berzerk' or 'enlightened' state, respectively.
+			if bravery < 25 and faith < 25, unit enters 'frantic' state.
+			all other cases, unit enters 'desperation' state.
+		health <= 0, the unit enters the 'unconcious' state unless a modifier states otherwise.
+	Mana:
+		mana can exceed 100% of max mana.
+		mana > 100%, the unit gains 'mana burn' state.
+		mana < 10%, the unit gains 'weakened' state.
+		mana <= 0, unit gains 'drained' state.
+		receives minor bonus to generation from int.
+	Stamina:
+		stamina value has a hard minimum of 0 and a maximum of 100.
+		stamina cannot exceed 100% max stamina.
+		stamina <= 0, unit gains 'tired' and 'drained' state.
+		regenerates by 50% per turn.
+		receives minor bonus to generation from brv and vit.
+	Action Points (AP):
+		AP = 100, unit is added onto the queue to take their turn.
+		After unit has completed their turn, AP is set to either 0, 15, or 30.
+	Skill Points (SP):
+		SP cannot exceed 100% of max SP.
+		SP is expended when the actor learns a new skill.
+	Movement Points(mov):
+		Standard Forward movement costs 1 point.
+		Standard Sideways movement costs 1.5 points.
+		Standard Backwards movement costs 2 points.
+
+
+Statistical:
+	All statistical attributes have a hard minimum of 1, and a soft maximum of 30.
+	Strength (str):
+		str is primarily used to calculate physical attacks, critical damage.
+		str provite minor amounts of stamina resource.
+		provides bonus modifier to strength-related actions.
+	Intelligence (int):
+		int is primarily used to calculate magic attacks, and bonus mana-resource.
+		provides bonus modifier to critical chance.
+		provides bonus modifier to intelligence-related actions.
+	Dexterity (dex):
+		dex is primarily used to calculate accuracy, and evasion.
+		dex provides moderate amounts of stamina resource.
+		provides bonus modifier to dexterity-related actions.
+	Vitality (vit):
+		vit is primarily used to calculate defence, resistance and bonus health-resource.
+		vit provides a minor bonus to stamina resource generation.
+	Luck:
+		luck modifies the randomness that may occur in any action that requires randomization.
+		luck provides a minor or moderate modifier to all actions.
+	Speed:
+		speed determines the rate AP is accrued per 'tick'.
+		provides bonus modifier to any speed-related action.
+
+Other:
+	Bravery (BRV):
+		brv is a modifier that increases physical melee attacks and actions.
+		brv increases success rate for defending against intimidation related ailments.
+		brv increases stamina resource generation.
+	Faith (FTH):
+		fth is a modifier that increases the potency of incoming and outgoing magic attacks and actions.
+		fth increases casting speed and mana resource generation.
+	Defense (def):
+		minimum damage reduction from def is 0
+		reduces incoming damage by the value in def.
+		maximum damage reduction is 50% of incoming damage.
+	Protection (prot):
+		minimum damage reduction from prot is 0%
+		maximum damage reduction from prot is 15%
+		reduces incoming damage by prot as a percent
+	Race:
+		defines whether the actor is human, animal, lizard person, you name it.
+	Gender:
+		defines whether actor is male, female, or 'its complicated'
+	Job:
+		job represents the actor's assigned job.
+		job may change upon meeting specific requirements.
+	Level (lv):
+		lv always begins at 1.
+		lv cannot exceed 99.
+			any jlv that contributes attribute bonuses beyond lv 99 is voided
+		lv determines the actor's accumulated job levels.
+		lv may be used in calculations for certain actions or attacks
+	Job Level (jlv):
+		jlv always begins at 1.
+		jlv cannot exceed 30.
+		jlv determines the actor's level for a specific job.
+		jlv contributes Resource and Statistical attribute points based on the given job.
+			if lv >= 99, jlv will no longer contribute bonus attribute points.
+		jlb may be used in calculations for certain actions or attacks
+	Experience (exp):
+		exp begins at 0.
+		minimum exp gained is 5
+		maximum exp gained is 15
+		exp gained is determined by 10 + (other.level - self.level)
+			if (exp + newly gained exp) >= 100
+				jlv increases by 1, exp reset to 0
