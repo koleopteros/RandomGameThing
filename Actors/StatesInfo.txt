@@ -5,6 +5,8 @@ Terms:
 	Immense: 15% effect.
 	Crazy amounts: 25% effect
 
+-Attribute related-
+
 Normal:
 	actor modifiers operate normally
 
@@ -62,4 +64,11 @@ Tired:
 	Activates when stamina <= 0
 		actor cannot move nor perform any action on their next turn.
 	Deactivates when stamina > 0
+
+-Status Ailments-
+Burning (strong/weak):
+	- lasts 2 turns (default).
+	- deals fire damage to unit each turn.
+	- adds bonus fire damage to actions.
+	- ignites terrain with 'Oil/Tar' states
 

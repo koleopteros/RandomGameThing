@@ -1,0 +1,74 @@
+Maps:
+	Represented by a two dimensional matrix.
+	Each element in the matrix will contain a MapNode.
+
+MapNode:
+	contains information regarding current node.
+	Mandatory Information:
+		Height: 0 for bottom, 5 for sea level, 20 for maximum height
+		Terrain: Contains terrain data which will apply a modifier to the actor within it.
+	Optional Information: 
+		State 1: Ground modifier (oil seeps into the ground, pitfall trap, etc.)
+		State 2: Surface modifier (flames, snow, ice, water, etc)
+		State 3: Air Modifier (smoke, fog, gas)
+
+Terms:
+	in/out: references incoming and outgoing.
+	end of life: when a state lasts 3 turns and has reached the end of the third turn.
+
+	Minor: between 1% to 3% effect.
+	Moderate: between 3% to 5% effect.
+	Major: 5% to 10% effect.
+	Immense: 15% effect.
+	Crazy amounts: 25% effect
+
+Terrain:
+	Grassland:
+		- basic land
+	Paved/Tiled:
+		- reduces movement cost by 0.3
+		- 'Burning' state cannot exist without 'Oil/Tar' state.
+	Stone/Granite:
+		- Lightning based area of effects are reduced to a single tile.
+		- 'Burning' state cannot exist without 'Oil/Tar' state
+		- minor bonus to Wind/Force based actions
+	Sand/Desert:
+		- increase movement cost by 0.5
+		- if 'Oil/Tar' state was present before 'Burning', 'Oil/Tar' state duration increases to 4 turns; 'Burning' state begins at intensity 3.
+	Forested:
+		- Has an equivalent of 'Oil/Tar' state when 'Burning' state occurs.
+		- increases mobile actors movement cost by 1
+		- provides minor bonus to evasion of all infantry actors.
+
+
+MapNode States:
+(merely examples.  Could be worked on later)
+/*Special case for 'Smoke'*/
+	Smoke: 
+		- lasts 8 turns (default)
+		- reduce all resource regeneration, in/out accuracy by a immense amount.
+		- reduces potency of fire-based actions
+		- removes 'Burning' state.
+	Oil/Tar:
+		- lasts indefinitely, unless modified.
+		- increase Movement cost by 1
+		- When 'Burning' state when fire is applied, 'Oil/Tar' will persist for 2 turns.
+	Burning (intensity):
+		- intensity begins at 4(low), decreases to 0(high).
+		- lasts Oil/Tar duration + intensity turns.
+		- intensity < 4, reduces in/out accuracy and resource regeneration at an increasing rate.
+		- inflicts 'Burning' state to any unit on the tile.
+		- inflicts 'Burning' state to nearby 'Forested' terrain and 'Oil/Tar' states.
+		- If 'Burning' state lasts the default length, converts to 'Smoke' state upon end of life.
+	Fog:
+		- increase potency of cold and lightning actions.
+		- spreads a minor effect of cold and lightning actions to 1 tile distance.
+		- reduces in/out accuracy.
+		- reduces potency of fire-based actions.
+		- remove 'Burning' state.
+	Wet:
+		- increase Movement cost by 1.
+		- increase potency of cold and lightning actions.
+		- spreads a minor effect of cold and lightning action to 1 tile distance.
+		- reduces potency of in/out fire-based actions.
+		- remove 'Burning' state.
